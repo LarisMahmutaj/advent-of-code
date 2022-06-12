@@ -1,6 +1,6 @@
 package days.Day1;
 
-import Utils.FileReaderUtil;
+import utils.FileReaderUtil;
 import interfaces.Day;
 
 import java.io.IOException;

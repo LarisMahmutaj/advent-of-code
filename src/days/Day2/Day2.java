@@ -1,7 +1,7 @@
 package days.Day2;
 
-import Utils.FileReaderUtil;
-import Utils.ParseUtil;
+import utils.FileReaderUtil;
+import utils.ParseUtil;
 import interfaces.Day;
 
 import java.io.IOException;
