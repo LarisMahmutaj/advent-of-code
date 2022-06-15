@@ -65,9 +65,9 @@ public class Day2 implements Day {
                 } else {
                     System.out.println("ERROR: Invalid direction value");
                 }
-
-                finalPosition = xAxis * yAxis;
             }
+
+            finalPosition = xAxis * yAxis;
         }catch (IOException e) {
             System.out.println(e.getMessage());
         }
