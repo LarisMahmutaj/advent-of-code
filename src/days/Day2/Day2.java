@@ -17,7 +17,7 @@ public class Day2 implements Day {
     public void partOne() {
         try {
             String input = FileReaderUtil.readString(this);
-            List<String> instructions = ParseUtil.linesToStringArray(input);
+            List<String> instructions = ParseUtil.linesToStringList(input);
 
             for (String instruction : instructions) {
                 String[] instructionParts = instruction.split(" ");
@@ -48,7 +48,7 @@ public class Day2 implements Day {
     public void partTwo() {
         try{
             String input = FileReaderUtil.readString(this);
-            List<String> instructions = ParseUtil.linesToStringArray(input);
+            List<String> instructions = ParseUtil.linesToStringList(input);
 
             for (String instruction : instructions) {
                 String[] instructionParts = instruction.split(" ");

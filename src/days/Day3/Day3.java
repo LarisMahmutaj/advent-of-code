@@ -7,7 +7,6 @@ import utils.ParseUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Day3 implements Day {
     private int powerConsumption;
@@ -20,7 +19,7 @@ public class Day3 implements Day {
     public void partOne() {
         try{
             String input = FileReaderUtil.readString(this);
-            List<String> values = ParseUtil.linesToStringArray(input);
+            List<String> values = ParseUtil.linesToStringList(input);
             int valueLength = values.get(0).length();
 
             for (int i = 0; i < valueLength; i++){
@@ -57,7 +56,7 @@ public class Day3 implements Day {
     public void partTwo() {
         try{
             String input = FileReaderUtil.readString(this);
-            List<String> values = ParseUtil.linesToStringArray(input);
+            List<String> values = ParseUtil.linesToStringList(input);
 
             String o2RatingBinary  = filterRatings(values, false);
             String co2RatingBinary = filterRatings(values, true);
