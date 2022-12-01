@@ -1,15 +1,13 @@
-package days.Day4;
+package Y2021.days.Day4;
 
 import interfaces.Day;
 import utils.FileReaderUtil;
-import utils.ParseUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Day4 implements Day {
     private List<Integer> drawnNumbers = new ArrayList<>();
@@ -17,14 +15,14 @@ public class Day4 implements Day {
 
     @Override
     public void partOne() {
-        try{
+        try {
             List<Board> boards = parseBoards();
 
             for (Integer drawnNUmber : numbersToDraw) {
                 drawnNumbers.add(drawnNUmber);
 
                 for (Board board : boards) {
-                    for (Board.Line line : board.getLines()){
+                    for (Board.Line line : board.getLines()) {
                         if (new HashSet<>(drawnNumbers).containsAll(line.getNumbers())) {
                             int result = calculateBoardResult(board, drawnNUmber);
 
@@ -35,14 +33,14 @@ public class Day4 implements Day {
                 }
 
             }
-        }catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
     @Override
     public void partTwo() {
-        try{
+        try {
             List<Board> boards = parseBoards();
             int totalBoards = boards.size();
             List<Board> winnerBoards = new ArrayList<>();
@@ -51,7 +49,7 @@ public class Day4 implements Day {
                 drawnNumbers.add(drawnNUmber);
                 boards.removeAll(winnerBoards);
                 for (Board board : boards) {
-                    for (Board.Line line : board.getLines()){
+                    for (Board.Line line : board.getLines()) {
                         if (new HashSet<>(drawnNumbers).containsAll(line.getNumbers())) {
                             winnerBoards.add(board);
                             break;
@@ -65,10 +63,11 @@ public class Day4 implements Day {
                 }
             }
 
-            int result = calculateBoardResult(winnerBoards.get(winnerBoards.size() - 1), drawnNumbers.get(drawnNumbers.size() - 1));
+            int result = calculateBoardResult(winnerBoards.get(winnerBoards.size() - 1),
+                    drawnNumbers.get(drawnNumbers.size() - 1));
             System.out.println("Result: " + result);
 
-        }catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -85,7 +84,7 @@ public class Day4 implements Day {
 
         List<Board> boards = new ArrayList<>();
 
-        for(String part : parts) {
+        for (String part : parts) {
             Board board = new Board();
             board.parseLines(part);
             boards.add(board);

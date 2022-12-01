@@ -1,4 +1,4 @@
-package days.Day3;
+package Y2021.days.Day3;
 
 import interfaces.Day;
 import utils.FileReaderUtil;
@@ -17,26 +17,26 @@ public class Day3 implements Day {
 
     @Override
     public void partOne() {
-        try{
+        try {
             String input = FileReaderUtil.readString(this);
             List<String> values = ParseUtil.linesToStringList(input);
             int valueLength = values.get(0).length();
 
-            for (int i = 0; i < valueLength; i++){
+            for (int i = 0; i < valueLength; i++) {
                 int zeroCount = 0;
                 int oneCount = 0;
 
                 for (String value : values) {
-                    switch(value.charAt(i)){
+                    switch (value.charAt(i)) {
                         case '0' -> zeroCount++;
                         case '1' -> oneCount++;
                     }
                 }
 
-                if(zeroCount > oneCount) {
+                if (zeroCount > oneCount) {
                     gamaRateBinary = gamaRateBinary.concat("0");
                     epsilonRateBinary = epsilonRateBinary.concat("1");
-                }else{
+                } else {
                     gamaRateBinary = gamaRateBinary.concat("1");
                     epsilonRateBinary = epsilonRateBinary.concat("0");
                 }
@@ -46,7 +46,7 @@ public class Day3 implements Day {
             int epsilonRateDecimal = Integer.parseInt(epsilonRateBinary, 2);
 
             powerConsumption = gamaRateDecimal * epsilonRateDecimal;
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         System.out.println("Result: " + powerConsumption);
@@ -54,18 +54,18 @@ public class Day3 implements Day {
 
     @Override
     public void partTwo() {
-        try{
+        try {
             String input = FileReaderUtil.readString(this);
             List<String> values = ParseUtil.linesToStringList(input);
 
-            String o2RatingBinary  = filterRatings(values, false);
+            String o2RatingBinary = filterRatings(values, false);
             String co2RatingBinary = filterRatings(values, true);
 
             int o2Rating = Integer.parseInt(o2RatingBinary, 2);
             int co2Rating = Integer.parseInt(co2RatingBinary, 2);
 
             lifeSupport = o2Rating * co2Rating;
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         System.out.println("Result: " + lifeSupport);
@@ -77,17 +77,17 @@ public class Day3 implements Day {
             int zeroCount = 0;
             int oneCount = 0;
             for (String item : ratingList) {
-                if(item.charAt(index) == '1') {
+                if (item.charAt(index) == '1') {
                     oneCount++;
-                }else{
+                } else {
                     zeroCount++;
                 }
             }
 
             char filteredChar;
-            if(filterFewer){
+            if (filterFewer) {
                 filteredChar = zeroCount <= oneCount ? '0' : '1';
-            }else {
+            } else {
                 filteredChar = oneCount >= zeroCount ? '1' : '0';
             }
 

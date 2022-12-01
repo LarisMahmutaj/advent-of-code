@@ -1,4 +1,4 @@
-package days.Day2;
+package Y2021.days.Day2;
 
 public enum Direction {
     FORWARD("forward"),

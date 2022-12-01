@@ -1,4 +1,4 @@
-package days.Day4;
+package Y2021.days.Day4;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Board {
     private final List<Line> lines;
 
-    public Board(){
+    public Board() {
         this.lines = new ArrayList<>();
     }
 
@@ -16,16 +16,16 @@ public class Board {
         return lines;
     }
 
-    public List<Integer> getAllNumbers(){
+    public List<Integer> getAllNumbers() {
         List<Integer> numbers = new ArrayList<>();
-        for(Line line : this.lines) {
+        for (Line line : this.lines) {
             numbers.addAll(line.getNumbers());
         }
 
         return numbers.stream().distinct().collect(Collectors.toList());
     }
 
-    static class Line{
+    static class Line {
 
         private List<Integer> numbers;
 
@@ -42,6 +42,7 @@ public class Board {
         }
 
     }
+
     public void parseLines(String boardString) {
         String[] lines = boardString.split("\n");
 
@@ -61,7 +62,7 @@ public class Board {
         List<Line> columns = new ArrayList<>();
         for (int i = 0; i < rows.get(0).numbers.size(); i++) {
             Line column = new Line();
-            for(Line row : rows) {
+            for (Line row : rows) {
                 column.numbers.add(row.numbers.get(i));
             }
             columns.add(column);

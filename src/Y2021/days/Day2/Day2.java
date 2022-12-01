@@ -1,8 +1,8 @@
-package days.Day2;
+package Y2021.days.Day2;
 
+import interfaces.Day;
 import utils.FileReaderUtil;
 import utils.ParseUtil;
-import interfaces.Day;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,6 +13,7 @@ public class Day2 implements Day {
     private int aim = 0;
     private int finalPosition = 0;
     private List<String> instructions;
+
     @Override
     public void partOne() {
         try {
@@ -46,7 +47,7 @@ public class Day2 implements Day {
 
     @Override
     public void partTwo() {
-        try{
+        try {
             String input = FileReaderUtil.readString(this);
             List<String> instructions = ParseUtil.linesToStringList(input);
 
@@ -68,7 +69,7 @@ public class Day2 implements Day {
             }
 
             finalPosition = xAxis * yAxis;
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         System.out.println("Result: " + finalPosition);
