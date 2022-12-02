@@ -3,20 +3,14 @@ package Y2021.days.Day1;
 import interfaces.Day;
 import utils.FileReaderUtil;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Day1 implements Day {
     private List<Integer> getValues() {
-        List<Integer> values = new ArrayList<>();
-        try {
-            String inputString = FileReaderUtil.readString(this);
-            values = Arrays.stream(inputString.split("\n")).map(Integer::parseInt).toList();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        List<Integer> values;
+        String inputString = FileReaderUtil.readString(this);
+        values = Arrays.stream(inputString.split("\n")).map(Integer::parseInt).toList();
         return values;
     }
 

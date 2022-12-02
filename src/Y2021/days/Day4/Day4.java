@@ -3,7 +3,6 @@ package Y2021.days.Day4;
 import interfaces.Day;
 import utils.FileReaderUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -15,64 +14,56 @@ public class Day4 implements Day {
 
     @Override
     public void partOne() {
-        try {
-            List<Board> boards = parseBoards();
+        List<Board> boards = parseBoards();
 
-            for (Integer drawnNUmber : numbersToDraw) {
-                drawnNumbers.add(drawnNUmber);
+        for (Integer drawnNUmber : numbersToDraw) {
+            drawnNumbers.add(drawnNUmber);
 
-                for (Board board : boards) {
-                    for (Board.Line line : board.getLines()) {
-                        if (new HashSet<>(drawnNumbers).containsAll(line.getNumbers())) {
-                            int result = calculateBoardResult(board, drawnNUmber);
+            for (Board board : boards) {
+                for (Board.Line line : board.getLines()) {
+                    if (new HashSet<>(drawnNumbers).containsAll(line.getNumbers())) {
+                        int result = calculateBoardResult(board, drawnNUmber);
 
-                            System.out.println("Result: " + result);
-                            return;
-                        }
+                        System.out.println("Result: " + result);
+                        return;
                     }
                 }
-
             }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+
         }
     }
 
     @Override
     public void partTwo() {
-        try {
-            List<Board> boards = parseBoards();
-            int totalBoards = boards.size();
-            List<Board> winnerBoards = new ArrayList<>();
+        List<Board> boards = parseBoards();
+        int totalBoards = boards.size();
+        List<Board> winnerBoards = new ArrayList<>();
 
-            for (Integer drawnNUmber : numbersToDraw) {
-                drawnNumbers.add(drawnNUmber);
-                boards.removeAll(winnerBoards);
-                for (Board board : boards) {
-                    for (Board.Line line : board.getLines()) {
-                        if (new HashSet<>(drawnNumbers).containsAll(line.getNumbers())) {
-                            winnerBoards.add(board);
-                            break;
-                        }
+        for (Integer drawnNUmber : numbersToDraw) {
+            drawnNumbers.add(drawnNUmber);
+            boards.removeAll(winnerBoards);
+            for (Board board : boards) {
+                for (Board.Line line : board.getLines()) {
+                    if (new HashSet<>(drawnNumbers).containsAll(line.getNumbers())) {
+                        winnerBoards.add(board);
+                        break;
                     }
-
                 }
 
-                if (winnerBoards.size() == totalBoards) {
-                    break;
-                }
             }
 
-            int result = calculateBoardResult(winnerBoards.get(winnerBoards.size() - 1),
-                    drawnNumbers.get(drawnNumbers.size() - 1));
-            System.out.println("Result: " + result);
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+            if (winnerBoards.size() == totalBoards) {
+                break;
+            }
         }
+
+        int result = calculateBoardResult(winnerBoards.get(winnerBoards.size() - 1),
+                drawnNumbers.get(drawnNumbers.size() - 1));
+        System.out.println("Result: " + result);
+
     }
 
-    private List<Board> parseBoards() throws IOException {
+    private List<Board> parseBoards() {
         String input = FileReaderUtil.readString(this);
 
         List<String> parts = new ArrayList<>(Arrays.stream(input.split("\n\n")).toList());

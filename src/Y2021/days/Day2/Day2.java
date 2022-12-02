@@ -4,7 +4,6 @@ import interfaces.Day;
 import utils.FileReaderUtil;
 import utils.ParseUtil;
 
-import java.io.IOException;
 import java.util.List;
 
 public class Day2 implements Day {
@@ -16,62 +15,53 @@ public class Day2 implements Day {
 
     @Override
     public void partOne() {
-        try {
-            String input = FileReaderUtil.readString(this);
-            List<String> instructions = ParseUtil.linesToStringList(input);
+        String input = FileReaderUtil.readString(this);
+        this.instructions = ParseUtil.linesToStringList(input);
 
-            for (String instruction : instructions) {
-                String[] instructionParts = instruction.split(" ");
-                String direction = instructionParts[0];
-                int units = Integer.parseInt(instructionParts[1]);
+        for (String instruction : instructions) {
+            String[] instructionParts = instruction.split(" ");
+            String direction = instructionParts[0];
+            int units = Integer.parseInt(instructionParts[1]);
 
-                if (direction.equals(Direction.FORWARD.getValue())) {
-                    xAxis += units;
-                } else if (direction.equals(Direction.DOWN.getValue())) {
-                    yAxis += units;
-                } else if (direction.equals(Direction.UP.getValue())) {
-                    yAxis -= units;
-                } else {
-                    System.out.println("ERROR: Invalid direction value");
-                }
+            if (direction.equals(Direction.FORWARD.getValue())) {
+                xAxis += units;
+            } else if (direction.equals(Direction.DOWN.getValue())) {
+                yAxis += units;
+            } else if (direction.equals(Direction.UP.getValue())) {
+                yAxis -= units;
+            } else {
+                System.out.println("ERROR: Invalid direction value");
             }
-
-            finalPosition = xAxis * yAxis;
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         }
+
+        finalPosition = xAxis * yAxis;
 
         System.out.println("Result: " + finalPosition);
     }
 
     @Override
     public void partTwo() {
-        try {
-            String input = FileReaderUtil.readString(this);
-            List<String> instructions = ParseUtil.linesToStringList(input);
+        String input = FileReaderUtil.readString(this);
+        this.instructions = ParseUtil.linesToStringList(input);
 
-            for (String instruction : instructions) {
-                String[] instructionParts = instruction.split(" ");
-                String direction = instructionParts[0];
-                int units = Integer.parseInt(instructionParts[1]);
+        for (String instruction : instructions) {
+            String[] instructionParts = instruction.split(" ");
+            String direction = instructionParts[0];
+            int units = Integer.parseInt(instructionParts[1]);
 
-                if (direction.equals(Direction.FORWARD.getValue())) {
-                    xAxis += units;
-                    yAxis += aim * units;
-                } else if (direction.equals(Direction.DOWN.getValue())) {
-                    aim += units;
-                } else if (direction.equals(Direction.UP.getValue())) {
-                    aim -= units;
-                } else {
-                    System.out.println("ERROR: Invalid direction value");
-                }
+            if (direction.equals(Direction.FORWARD.getValue())) {
+                xAxis += units;
+                yAxis += aim * units;
+            } else if (direction.equals(Direction.DOWN.getValue())) {
+                aim += units;
+            } else if (direction.equals(Direction.UP.getValue())) {
+                aim -= units;
+            } else {
+                System.out.println("ERROR: Invalid direction value");
             }
-
-            finalPosition = xAxis * yAxis;
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         }
+
+        finalPosition = xAxis * yAxis;
         System.out.println("Result: " + finalPosition);
     }
 }
