@@ -52,8 +52,8 @@ public class Day8 implements Day {
     }
 
     private int getTreeScore(Tree tree) {
-        int x = tree.getX();
-        int y = tree.getY();
+        int x = tree.x();
+        int y = tree.y();
         
         int leftCount = 0;
         int rightCount = 0;
@@ -63,10 +63,10 @@ public class Day8 implements Day {
         // X Axis Left Side
         for (int i = x-1; i >= 0; i--) {
             Tree currentTree = trees.get(i + "," + y);
-            if(currentTree.getValue() <= tree.getValue()) {
+            if(currentTree.value() <= tree.value()) {
                 leftCount++;
             }
-            if(currentTree.getValue() == tree.getValue()){
+            if(currentTree.value() == tree.value()){
                 break;
             }
         }
@@ -74,10 +74,10 @@ public class Day8 implements Day {
         // X Axis Right Aide
         for (int i = x+1; i < forestLength; i++) {
             Tree currentTree = trees.get(i + "," + y);
-            if(currentTree.getValue() <= tree.getValue()) {
+            if(currentTree.value() <= tree.value()) {
                 rightCount++;
             }
-            if(currentTree.getValue() >= tree.getValue()){
+            if(currentTree.value() >= tree.value()){
                 rightCount++;
                 break;
             }
@@ -86,20 +86,20 @@ public class Day8 implements Day {
         // Y Axis Up Side
         for (int i = y-1; i >= 0; i--) {
             Tree currentTree = trees.get(x + "," + i);
-            if(currentTree.getValue() <= tree.getValue()){
+            if(currentTree.value() <= tree.value()){
                 upCount++;
             }
-            if(currentTree.getValue() == tree.getValue()){
+            if(currentTree.value() == tree.value()){
                 break;
             }
         }
 
         for (int i = y+1; i < forestHeight; i++) {
             Tree currentTree = trees.get(x + "," + i);
-            if(currentTree.getValue() <= tree.getValue()) {
+            if(currentTree.value() <= tree.value()) {
                 downCount++;
             }
-            if(currentTree.getValue() >= tree.getValue()){
+            if(currentTree.value() >= tree.value()){
                 downCount++;
                 break;
             }
@@ -109,8 +109,8 @@ public class Day8 implements Day {
     }
     
     private boolean isVisible(Tree tree) {
-        int x = tree.getX();
-        int y = tree.getY();
+        int x = tree.x();
+        int y = tree.y();
         
         if(x == 0 || x == forestLength - 1 || y == 0 || y == forestHeight - 1) {
             return true;
@@ -127,9 +127,9 @@ public class Day8 implements Day {
             if (tree.equals(currTree)) continue;
             
             if (i < x && !leftHidden) {
-                leftHidden = currTree.getValue() >= tree.getValue();        
+                leftHidden = currTree.value() >= tree.value();        
             }else if (i > x && !rightHidden){
-                rightHidden = currTree.getValue() >= tree.getValue();
+                rightHidden = currTree.value() >= tree.value();
             }
             
         }
@@ -140,9 +140,9 @@ public class Day8 implements Day {
             if (tree.equals(currTree)) continue;
             
             if(i < y && !upHidden) {
-                upHidden = currTree.getValue() >= tree.getValue();
+                upHidden = currTree.value() >= tree.value();
             }else if (i > y && !downHidden){
-                downHidden = currTree.getValue() >= tree.getValue();
+                downHidden = currTree.value() >= tree.value();
             }
         }
         return !leftHidden || !rightHidden || !upHidden || !downHidden;
