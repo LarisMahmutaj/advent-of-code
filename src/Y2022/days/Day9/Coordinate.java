@@ -55,16 +55,7 @@ public class Coordinate {
     public void moveLeft(int count) {
         this.x -= count;
     }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (o instanceof Coordinate.class) {
-//            return getX() == that.getX() && getY() == that.getY();
-//        }
-//        return false;
-//    }
-
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

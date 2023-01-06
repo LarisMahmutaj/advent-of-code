@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Day9 implements Day {
     List<String> commands;
-    private int knotCount;
     Rope rope;
     List<Coordinate> visitedLocations;
     
