@@ -9,8 +9,13 @@ public class App {
         while (true) {
             Scanner sc = new Scanner(System.in);
 
-            System.out.print("Enter year: ");
-            int year = sc.nextInt();
+            System.out.print("Enter year ('Q' to quit): ");
+            String input = sc.nextLine();
+            if (input.equals("Q")) {
+                System.out.print("Quitting..");
+                System.exit(0);
+            }
+            int year = Integer.parseInt(input);
 
             System.out.print("Enter day number: ");
             int dayNumber = sc.nextInt();
@@ -22,7 +27,7 @@ public class App {
 
                 System.out.print("Enter part to be executed: ");
                 int part = sc.nextInt();
-
+                System.out.println("Calculating..");
                 switch (part) {
                     case 1 -> day.partOne();
                     case 2 -> day.partTwo();
