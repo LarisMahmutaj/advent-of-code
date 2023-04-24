@@ -15,14 +15,22 @@ public class App {
                 System.out.print("Quitting..");
                 System.exit(0);
             }
-            int year = Integer.parseInt(input);
+            int year;
+            try {
+                year = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input!");
+                continue;
+            }
 
             System.out.print("Enter day number: ");
             int dayNumber = sc.nextInt();
 
             Day day;
             try {
-                Class<?> clazz = Class.forName("Y" + year + ".days.Day" + dayNumber + ".Day" + dayNumber);
+                Class<?> clazz = Class.forName(
+                        "Y" + year + ".days.Day" + String.format("%02d", dayNumber) + ".Day" + String.format("%02d",
+                                dayNumber));
                 day = (Day) clazz.getConstructor().newInstance();
 
                 System.out.print("Enter part to be executed: ");
@@ -34,7 +42,8 @@ public class App {
                     default -> System.out.println("Invalid part value!");
                 }
             } catch (ClassNotFoundException e) {
-                System.out.println("ERROR: Day" + dayNumber + " of year " + year + " was not found.");
+                System.out.println(
+                        "ERROR: Day" + String.format("%02d", dayNumber) + " of year " + year + " was not found.");
             } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
                      NoSuchMethodException e) {
                 throw new RuntimeException(e);
