@@ -11,7 +11,7 @@ public class App {
 
             System.out.print("Enter year ('Q' to quit): ");
             String input = sc.nextLine();
-            if (input.equals("Q")) {
+            if (input.equalsIgnoreCase("Q")) {
                 System.out.print("Quitting..");
                 System.exit(0);
             }
