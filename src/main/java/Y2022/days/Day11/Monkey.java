@@ -12,11 +12,11 @@ public class Monkey {
     private int monkeyIfTrue;
     private int monkeyIfFalse;
     private int inspectedItems;
-    
+
     public Monkey() {
         this.items = new ArrayDeque<>();
     }
-    
+
     public void increaseInspectedItems() {
         this.inspectedItems++;
     }
@@ -33,7 +33,7 @@ public class Monkey {
     public int hashCode() {
         return Objects.hash(getId());
     }
-    
+
     public int getDivisibleBy() {
         return divisibleBy;
     }
@@ -45,11 +45,11 @@ public class Monkey {
     public int getId() {
         return id;
     }
-    
+
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public Queue<Long> getItems() {
         return items;
     }
@@ -78,7 +78,7 @@ public class Monkey {
     public void setMonkeyIfTrue(int monkeyIfTrue) {
         this.monkeyIfTrue = monkeyIfTrue;
     }
-    
+
 
     public int getInspectedItems() {
         return inspectedItems;

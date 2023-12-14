@@ -34,11 +34,11 @@ public class Day10 implements Day {
         this.countdown = 40;
         logic();
     }
-    
+
     private void logic() {
-        for(int cycle = 0, lineIndex = 0; true; cycle++, lineIndex++, countdown--, instructionDuration++){
-            if(countdown == 0) {
-                total+= cycle * x;
+        for (int cycle = 0, lineIndex = 0; true; cycle++, lineIndex++, countdown--, instructionDuration++) {
+            if (countdown == 0) {
+                total += cycle * x;
                 countdown = 40;
                 output.append("\n");
                 lineIndex = 0;
@@ -56,13 +56,13 @@ public class Day10 implements Day {
 
             switch (instruction) {
                 case noop -> {
-                    if(instructionDuration == 1) {
+                    if (instructionDuration == 1) {
                         this.programCounter++;
                         this.instructionDuration = 0;
                     }
                 }
                 case addx -> {
-                    if(instructionDuration == 2) {
+                    if (instructionDuration == 2) {
                         int v = Integer.parseInt(instructionParts[1]);
                         this.x += v;
                         this.instructionDuration = 0;
@@ -71,9 +71,9 @@ public class Day10 implements Day {
                 }
             }
 
-            if(Math.abs(x - lineIndex) <= 1){
+            if (Math.abs(x - lineIndex) <= 1) {
                 output.append("#");
-            }else{
+            } else {
                 //Replaced . with white space for better readability
                 output.append(" ");
             }

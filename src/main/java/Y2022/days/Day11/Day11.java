@@ -27,16 +27,16 @@ public class Day11 implements Day {
     public void partTwo() {
         logic(10000, 2);
     }
-    
+
     private void logic(int roundNumber, int part) {
-        for(int i = 0; i < roundNumber; i++){
+        for (int i = 0; i < roundNumber; i++) {
             for (Monkey monkey : monkeys) {
                 while (!monkey.getItems().isEmpty()) {
                     runOperation(monkey, part);
                 }
             }
         }
-        
+
         // Sort descending
         monkeys.sort((a, b) -> {
             if (a.getInspectedItems() < b.getInspectedItems()) {
@@ -50,52 +50,52 @@ public class Day11 implements Day {
         long result = (long) monkeys.get(0).getInspectedItems() * monkeys.get(1).getInspectedItems();
         System.out.println(result);
     }
-    
-    public void runOperation(Monkey monkey, int part){
+
+    public void runOperation(Monkey monkey, int part) {
         long currentItem = monkey.getItems().remove();
         long worryLevel = currentItem;
-        
+
         String[] operationParts = monkey.getOperation().split(" ");
-        
+
         long firstOperand;
         long secondOperand;
-        
-        if(operationParts[0].equals("old")) {
+
+        if (operationParts[0].equals("old")) {
             firstOperand = currentItem;
-        }else {
+        } else {
             firstOperand = Long.parseLong(operationParts[0]);
         }
         if (operationParts[2].equals("old")) {
             secondOperand = currentItem;
-        }else {
+        } else {
             secondOperand = Long.parseLong(operationParts[2]);
         }
-        
+
         char operator = operationParts[1].charAt(0);
-        
-            switch (operator) {
-                case '+' -> worryLevel = firstOperand + secondOperand;
-                case '*' -> worryLevel = firstOperand * secondOperand;
-            }
-            
-            if(part == 1) {
-                worryLevel = (long) Math.floor((double) worryLevel / 3);
-            } else {
-                worryLevel = worryLevel % modAll;
-            }
-            
+
+        switch (operator) {
+            case '+' -> worryLevel = firstOperand + secondOperand;
+            case '*' -> worryLevel = firstOperand * secondOperand;
+        }
+
+        if (part == 1) {
+            worryLevel = (long) Math.floor((double) worryLevel / 3);
+        } else {
+            worryLevel = worryLevel % modAll;
+        }
+
         int throwTo;
-        
+
         if (worryLevel % monkey.getDivisibleBy() == 0) {
             throwTo = monkey.getMonkeyIfTrue();
-        }else {
+        } else {
             throwTo = monkey.getMonkeyIfFalse();
         }
-        
+
         Optional<Monkey> optionalMonkey = this.monkeys.stream().filter(x -> x.getId() == throwTo).findFirst();
-        
+
         long finalWorryLevel = worryLevel;
-        
+
         optionalMonkey.ifPresent(value -> value.getItems().offer(finalWorryLevel));
         monkey.increaseInspectedItems();
     }
@@ -108,24 +108,24 @@ public class Day11 implements Day {
             // Create Monkey and set ID
             Monkey monkey = new Monkey();
             monkey.setId(Character.getNumericValue(lines.get(0).split(" ")[1].charAt(0)));
-            
+
             // Set starting items
             List<Long> items = Stream.of(lines.get(1).split(": ")[1].split(", "))
                     .map(Long::parseLong)
                     .toList();
             monkey.getItems().addAll(items);
-            
+
             // Set operation
             monkey.setOperation(lines.get(2).split(" = ")[1]);
-            
+
             // Set test data
             monkey.setDivisibleBy(Integer.parseInt(lines.get(3).split("by ")[1]));
             monkey.setMonkeyIfTrue(Integer.parseInt(lines.get(4).split("monkey ")[1]));
             monkey.setMonkeyIfFalse(Integer.parseInt(lines.get(5).split("monkey ")[1]));
-            
+
             // This will be used in part 2
             this.modAll *= monkey.getDivisibleBy();
-            
+
             monkeys.add(monkey);
         }
     }
