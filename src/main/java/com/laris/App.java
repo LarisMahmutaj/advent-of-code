@@ -31,7 +31,7 @@ public class App {
             Day day;
             try {
                 Class<?> clazz = Class.forName(
-                        "Y" + year + ".days.Day" + String.format("%02d", dayNumber) + ".Day" + String.format("%02d",
+                        "com.laris.Y" + year + ".days.Day" + String.format("%02d", dayNumber) + ".Day" + String.format("%02d",
                                 dayNumber));
                 day = (Day) clazz.getConstructor().newInstance();
 
