@@ -160,7 +160,7 @@ public class Day14 implements Day {
         File currentDir = new File("");
         String projectPath = currentDir.getAbsolutePath();
         Path path = Path.of(
-                projectPath + "/src/main/java/Y2022/days/Day14/Grid.txt");
+                projectPath + "/src/main/java/com/laris/Y2022/days/Day14/Grid.txt");
         File file = new File(path.toUri());
 
         try (FileWriter fw = new FileWriter(file)) {
